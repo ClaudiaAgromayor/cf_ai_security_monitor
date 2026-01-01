@@ -63,7 +63,7 @@ export function SecurityDashboard() {
         setLoading(true);
         const [alertsRes, statsRes] = await Promise.all([
           fetch("/api/security/alerts?limit=20"),
-          fetch("/api/security/stats"),
+          fetch("/api/security/stats")
         ]);
 
         if (!alertsRes.ok || !statsRes.ok) {
@@ -118,22 +118,34 @@ export function SecurityDashboard() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Card className="border-blue-200">
             <div className="text-sm text-gray-600">Total Alerts (24h)</div>
-            <div className="text-3xl font-bold text-blue-600">{stats.alerts_24h}</div>
-            <div className="text-xs text-gray-500 mt-1">Total: {stats.total_alerts}</div>
+            <div className="text-3xl font-bold text-blue-600">
+              {stats.alerts_24h}
+            </div>
+            <div className="text-xs text-gray-500 mt-1">
+              Total: {stats.total_alerts}
+            </div>
           </Card>
 
           <Card className="border-red-200">
             <div className="text-sm text-gray-600">Critical Threats</div>
-            <div className="text-3xl font-bold text-red-600">{stats.critical_threats}</div>
-            <div className="text-xs text-gray-500 mt-1">Requires immediate action</div>
+            <div className="text-3xl font-bold text-red-600">
+              {stats.critical_threats}
+            </div>
+            <div className="text-xs text-gray-500 mt-1">
+              Requires immediate action
+            </div>
           </Card>
 
           <Card className="border-orange-200">
             <div className="text-sm text-gray-600">Risk Level</div>
-            <div className={`text-3xl font-bold ${getThreatColor(stats.avg_threat_level).split(" ")[0]}`}>
+            <div
+              className={`text-3xl font-bold ${getThreatColor(stats.avg_threat_level).split(" ")[0]}`}
+            >
               {stats.avg_threat_level.toUpperCase()}
             </div>
-            <div className="text-xs text-gray-500 mt-1">Average threat level</div>
+            <div className="text-xs text-gray-500 mt-1">
+              Average threat level
+            </div>
           </Card>
         </div>
       )}
@@ -144,7 +156,9 @@ export function SecurityDashboard() {
         <div className="space-y-3">
           {alerts.length === 0 ? (
             <Card className="border-green-200">
-              <div className="text-center text-green-700">✓ No security threats detected</div>
+              <div className="text-center text-green-700">
+                ✓ No security threats detected
+              </div>
             </Card>
           ) : (
             alerts.map((alert) => (
@@ -155,12 +169,16 @@ export function SecurityDashboard() {
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <span className={`px-3 py-1 rounded-full text-sm font-semibold ${getThreatColor(alert.threat_level)}`}>
+                      <span
+                        className={`px-3 py-1 rounded-full text-sm font-semibold ${getThreatColor(alert.threat_level)}`}
+                      >
                         {alert.threat_level.toUpperCase()}
                       </span>
                       {alert.action_taken !== "none" && (
-                        <span className={`px-3 py-1 rounded-full text-sm font-semibold 
-                          ${alert.action_taken === "escalated" ? "text-red-600 bg-red-100" : "text-yellow-600 bg-yellow-100"}`}>
+                        <span
+                          className={`px-3 py-1 rounded-full text-sm font-semibold 
+                          ${alert.action_taken === "escalated" ? "text-red-600 bg-red-100" : "text-yellow-600 bg-yellow-100"}`}
+                        >
                           {alert.action_taken.toUpperCase()}
                         </span>
                       )}
@@ -170,7 +188,8 @@ export function SecurityDashboard() {
                         Event ID: {alert.eventId}
                       </p>
                       <p className="text-sm text-gray-700 mt-2">
-                        <strong>AI Recommendation:</strong> {alert.ai_recommendation}
+                        <strong>AI Recommendation:</strong>{" "}
+                        {alert.ai_recommendation}
                       </p>
                       <p className="text-xs text-gray-500 mt-2">
                         {new Date(alert.timestamp).toLocaleString()}

@@ -13,7 +13,7 @@ import {
   createUIMessageStreamResponse,
   type ToolSet
 } from "ai";
-import { groq } from "@ai-sdk/groq";
+import { createGroq } from "@ai-sdk/groq";
 import { processToolCalls, cleanupMessages } from "./utils";
 import { DEFAULT_GROQ_MODEL } from "./shared";
 import { tools, executions } from "./tools";
@@ -46,9 +46,10 @@ export class Chat extends AIChatAgent<Env> {
     // );
 
     // Create Groq model instance with API key from environment
-    const model = groq(DEFAULT_GROQ_MODEL, {
+    const groqClient = createGroq({
       apiKey: this.env.GROQ_API_KEY
     });
+    const model = groqClient(DEFAULT_GROQ_MODEL);
 
     // Collect all tools (without MCP tools due to initialization issue)
     const allTools = {

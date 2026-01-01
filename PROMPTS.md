@@ -15,8 +15,9 @@ This document contains the AI prompts used during the development of this projec
 **Context**: Setting up the Cloudflare Workers project with security monitoring capabilities.
 
 **Prompt**:
+
 ```
-I want to create an AI-powered security monitoring system using Cloudflare Workers. 
+I want to create an AI-powered security monitoring system using Cloudflare Workers.
 The system should:
 - Analyze security events in real-time using an LLM
 - Store events and alerts persistently using Durable Objects
@@ -35,6 +36,7 @@ Help me set up the project structure and implement the core components.
 **Context**: Implementing the SecurityMonitor class with AI analysis.
 
 **Prompt**:
+
 ```
 Create a Durable Object called SecurityMonitor that:
 1. Receives security events via POST request
@@ -54,6 +56,7 @@ Create a Durable Object called SecurityMonitor that:
 **Context**: Designing the prompt for the LLM to analyze security events.
 
 **Prompt**:
+
 ```
 Design a prompt for Llama 3.3 that analyzes security events and returns:
 1. Threat Level: safe, suspicious, dangerous, or critical
@@ -75,8 +78,9 @@ The prompt should handle events like:
 **Context**: Alerts and statistics were not persisting across requests.
 
 **Prompt**:
+
 ```
-Los endpoints /api/security/stats y /api/security/alerts devuelven vacío. 
+Los endpoints /api/security/stats y /api/security/alerts devuelven vacío.
 Esto significa que las alertas se generan pero no se están guardando en el estado persistente.
 Corrigelo.
 ```
@@ -90,6 +94,7 @@ Corrigelo.
 **Context**: Connecting security API endpoints to the main Worker.
 
 **Prompt**:
+
 ```
 Help me create security-api.ts that:
 1. Handles POST /api/security/log
@@ -108,6 +113,7 @@ Help me create security-api.ts that:
 **Context**: Creating React components for security visualization.
 
 **Prompt**:
+
 ```
 Create a SecurityDashboard React component that:
 1. Fetches and displays recent alerts
@@ -126,6 +132,7 @@ Create a SecurityDashboard React component that:
 **Context**: Combining multiple documentation files into one.
 
 **Prompt**:
+
 ```
 Juntame el SETUP GUIDE y el SECURITY MONITOR README.
 Utiliza el estilo de escritura del README para escribirlo.
@@ -142,6 +149,7 @@ Tiene que ser para una Application de Cloudflare. Sin emojis.
 **Context**: Switching from OpenAI to Groq for cost efficiency.
 
 **Prompt**:
+
 ```
 Change the LLM provider from OpenAI to Groq using Llama 3.3.
 Update:
@@ -156,13 +164,13 @@ Update:
 
 ## Code Generation Statistics
 
-| Metric | Value |
-|--------|-------|
-| Files created/modified | 15+ |
-| Lines of code generated | ~2000 |
-| API endpoints implemented | 3 |
-| React components | 5 |
-| Durable Objects | 2 |
+| Metric                    | Value |
+| ------------------------- | ----- |
+| Files created/modified    | 15+   |
+| Lines of code generated   | ~2000 |
+| API endpoints implemented | 3     |
+| React components          | 5     |
+| Durable Objects           | 2     |
 
 ---
 

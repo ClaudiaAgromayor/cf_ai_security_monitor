@@ -36,12 +36,23 @@ const getLocalTime = tool({
 const reportSecurityEvent = tool({
   description: "Report a security event for analysis and monitoring",
   inputSchema: z.object({
-    type: z.enum(["login_attempt", "api_call", "data_access", "config_change", "unknown"]),
+    type: z.enum([
+      "login_attempt",
+      "api_call",
+      "data_access",
+      "config_change",
+      "unknown"
+    ]),
     source: z.string().describe("IP address or user identifier"),
     description: z.string().describe("Description of the security event"),
-    severity: z.enum(["low", "medium", "high", "critical"]).optional(),
+    severity: z.enum(["low", "medium", "high", "critical"]).optional()
   }),
-  execute: async ({ type, source, description, severity = "medium" }) => {
+  execute: async ({
+    type,
+    source,
+    description: _description,
+    severity = "medium"
+  }) => {
     console.log(`Security event reported: ${type} from ${source}`);
     return `Security event logged and analyzed. Type: ${type}, Severity: ${severity}`;
   }

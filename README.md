@@ -21,26 +21,31 @@ An AI-powered security monitoring system built with Cloudflare Workers. This app
 ## Features
 
 **AI-Powered Threat Analysis**
+
 - Uses Llama 3.3 70B to analyze security events in real-time
 - Determines threat levels: safe, suspicious, dangerous, critical
 - Provides actionable recommendations automatically
 
 **Real-Time Monitoring**
+
 - Event logging and tracking
 - 24-hour alert history
 - Threat level aggregation and statistics
 
 **Interactive Chat Agent**
+
 - Web-based chat interface
 - Task scheduling capabilities (one-time, delayed, cron)
 - Streaming responses
 
 **Persistent State Management**
+
 - Durable Objects for event and alert storage
 - Data persists across requests and deployments
 - Isolated state per account
 
 **Serverless Architecture**
+
 - Runs entirely on Cloudflare's edge network
 - Auto-scaling, no infrastructure management
 - Low latency globally
@@ -149,13 +154,13 @@ Analyze a security event with AI and get threat assessment.
 
 **Parameters:**
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| type | string | Yes | Event type: `login_attempt`, `api_call`, `data_access`, `config_change`, `unknown` |
-| source | string | Yes | IP address or user identifier |
-| description | string | Yes | Human-readable event description |
-| severity | string | Yes | `low`, `medium`, `high`, `critical` |
-| metadata | object | No | Additional context data |
+| Field       | Type   | Required | Description                                                                        |
+| ----------- | ------ | -------- | ---------------------------------------------------------------------------------- |
+| type        | string | Yes      | Event type: `login_attempt`, `api_call`, `data_access`, `config_change`, `unknown` |
+| source      | string | Yes      | IP address or user identifier                                                      |
+| description | string | Yes      | Human-readable event description                                                   |
+| severity    | string | Yes      | `low`, `medium`, `high`, `critical`                                                |
+| metadata    | object | No       | Additional context data                                                            |
 
 **Response:**
 
@@ -176,9 +181,9 @@ Get recent security alerts.
 
 **Query Parameters:**
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| limit | number | 10 | Maximum alerts to return |
+| Parameter | Type   | Default | Description              |
+| --------- | ------ | ------- | ------------------------ |
+| limit     | number | 10      | Maximum alerts to return |
 
 **Response:**
 
@@ -329,9 +334,9 @@ src/
 
 ### Environment Variables
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| GROQ_API_KEY | Groq API key for Llama 3.3 | Yes |
+| Variable     | Description                | Required |
+| ------------ | -------------------------- | -------- |
+| GROQ_API_KEY | Groq API key for Llama 3.3 | Yes      |
 
 ### Local Development
 
@@ -374,12 +379,12 @@ Defined in `wrangler.jsonc`:
 
 ## Threat Levels
 
-| Level | Action | Description |
-|-------|--------|-------------|
-| safe | None | No threat detected |
-| suspicious | Monitor | Potential threat, requires monitoring |
-| dangerous | Flag | Confirmed threat, flagged for review |
-| critical | Escalate | Severe threat, immediate escalation |
+| Level      | Action   | Description                           |
+| ---------- | -------- | ------------------------------------- |
+| safe       | None     | No threat detected                    |
+| suspicious | Monitor  | Potential threat, requires monitoring |
+| dangerous  | Flag     | Confirmed threat, flagged for review  |
+| critical   | Escalate | Severe threat, immediate escalation   |
 
 **Automatic Actions:**
 
@@ -476,14 +481,17 @@ curl -X POST https://your-app.workers.dev/api/security/log \
 ## Resources
 
 **Cloudflare Documentation:**
+
 - Cloudflare Workers: https://developers.cloudflare.com/workers/
 - Durable Objects: https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
 
 **AI and APIs:**
+
 - Groq API: https://console.groq.com/docs
 - Llama 3.3: https://www.llama.com/
 
 **Project Dependencies:**
+
 - AI SDK: https://sdk.vercel.ai/
 - React: https://react.dev/
 

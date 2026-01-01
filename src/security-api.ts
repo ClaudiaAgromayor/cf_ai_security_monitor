@@ -5,7 +5,10 @@
 
 import type { SecurityEvent } from "./security-monitor";
 
-export async function handleSecurityRequest(request: Request, env: Env): Promise<Response> {
+export async function handleSecurityRequest(
+  request: Request,
+  env: Env
+): Promise<Response> {
   const url = new URL(request.url);
 
   // Get the security monitor instance
@@ -18,7 +21,7 @@ export async function handleSecurityRequest(request: Request, env: Env): Promise
     return securityMonitor.fetch(
       new Request("https://security/api/events", {
         method: "POST",
-        body: JSON.stringify(event),
+        body: JSON.stringify(event)
       })
     );
   }
@@ -33,9 +36,7 @@ export async function handleSecurityRequest(request: Request, env: Env): Promise
 
   if (url.pathname === "/api/security/stats") {
     // Get security statistics
-    return securityMonitor.fetch(
-      new Request("https://security/api/stats")
-    );
+    return securityMonitor.fetch(new Request("https://security/api/stats"));
   }
 
   return new Response("Not found", { status: 404 });
@@ -49,11 +50,11 @@ export const SECURITY_EVENT_TYPES = {
   UNUSUAL_API_ACTIVITY: "api_call",
   DATA_ACCESS_ANOMALY: "data_access",
   CONFIG_CHANGE: "config_change",
-  SUSPICIOUS_BEHAVIOR: "unknown",
+  SUSPICIOUS_BEHAVIOR: "unknown"
 } as const;
 
 export async function logSecurityEvent(
-  env: Env,
+  _env: Env,
   type: string,
   source: string,
   description: string,
@@ -61,15 +62,15 @@ export async function logSecurityEvent(
   metadata?: Record<string, unknown>
 ) {
   const event: Omit<SecurityEvent, "id" | "timestamp"> = {
-    type: type as any,
+    type: type as SecurityEvent["type"],
     source,
     description,
     severity,
-    metadata,
+    metadata
   };
 
   return fetch("https://dummy/api/security/log", {
     method: "POST",
-    body: JSON.stringify(event),
+    body: JSON.stringify(event)
   });
 }
